@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {ContentService} from '../../services/content-service/content.service';
+import {ContentService} from '../../services/content/content.service';
 import {Subscription} from 'rxjs';
 
 @Component({

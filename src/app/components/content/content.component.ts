@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ITerritory} from '../../models/area.model';
-import {ContentService} from '../../services/content-service/content.service';
+import {ContentService} from '../../services/content/content.service';
 
 @Component({
   selector: 'app-content',
