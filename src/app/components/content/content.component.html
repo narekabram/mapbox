@@ -1,5 +1,8 @@
-<p>content works!</p>
 <div>
   <app-filter></app-filter>
-  <app-card></app-card>
+  <div class="content">
+    <div *ngFor="let field of content.fields">
+      <app-card [area]="field"></app-card>
+    </div>
+  </div>
 </div>

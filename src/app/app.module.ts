@@ -10,7 +10,8 @@ import { MapWrapperComponent } from './components/map-wrapper/map-wrapper.compon
 import { ContentComponent } from './components/content/content.component';
 import { MapComponent } from './components/map/map.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './components/card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardComponent } from './card/card.component';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

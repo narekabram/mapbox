@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ITerritory} from '../../models/area.model';
+import {ContentService} from '../../services/content-service/content.service';
 
 @Component({
   selector: 'app-content',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+  content: ITerritory;
+  constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.contentService.getContent().subscribe(content => {
+      this.content = content;
+    });
   }
 
 }
