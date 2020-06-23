@@ -2,6 +2,11 @@ import {Injectable} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import {environment} from '../../../environments/environment';
 
+const mapStyles = {
+  street: 'streets-v11',
+  satellite: 'satellite-v9'
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,5 +29,9 @@ export class MapService {
       center: [this.lng, this.lat]
     });
     this.map.addControl(new mapboxgl.NavigationControl());
+  }
+
+  changeMapStyle(layer) {
+    this.map.setStyle('mapbox://styles/mapbox/' + mapStyles[layer]);
   }
 }

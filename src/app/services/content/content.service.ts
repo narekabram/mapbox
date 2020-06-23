@@ -20,6 +20,7 @@ export class ContentService {
   constructor() { }
 
   getContent() {
+    console.log(this.contentBehaviorSubject.value);
     this.contentBehaviorSubject.value.fields.map((field: IArea) => {
       if (field.acres <= AreasEnum.xSmall) {
         field.color = areasColors[AreasEnum.xSmall];

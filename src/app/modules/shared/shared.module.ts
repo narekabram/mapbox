@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -10,12 +11,14 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   exports: [
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ]
 })
 export class SharedModule { }

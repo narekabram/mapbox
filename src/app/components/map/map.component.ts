@@ -13,4 +13,9 @@ export class MapComponent implements OnInit {
     this.map.buildMap();
   }
 
+  onStyleChange(e: Event) {
+    console.log(e.value);
+    this.map.changeMapStyle(e.value);
+  }
+
 }
