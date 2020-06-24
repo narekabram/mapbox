@@ -1,7 +1,7 @@
 <div id="map" class="map-container"> </div>
 <div class="map-menu">
   <mat-radio-group aria-label="Select an option" (change)="onStyleChange($event)">
-    <mat-radio-button value="street">Street</mat-radio-button>
+    <mat-radio-button value="street" [checked]="true">Street</mat-radio-button>
     <mat-radio-button value="satellite">Satellite</mat-radio-button>
   </mat-radio-group>
 </div>

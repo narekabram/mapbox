@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ITerritory} from '../../models/area.model';
-import {ContentService} from '../../services/content/content.service';
 
 @Component({
   selector: 'app-content',
@@ -9,13 +8,10 @@ import {ContentService} from '../../services/content/content.service';
 })
 export class ContentComponent implements OnInit {
 
-  content: ITerritory;
-  constructor(private contentService: ContentService) { }
+  @Input() mapContent: ITerritory;
+  constructor() { }
 
   ngOnInit() {
-    this.contentService.getContent().subscribe(content => {
-      this.content = content;
-    });
   }
 
 }

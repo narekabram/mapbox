@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MapService} from '../../services/map/map.service';
+import {FormControl} from '@angular/forms';
+import {ITerritory} from '../../models/area.model';
 
 @Component({
   selector: 'app-map',
@@ -8,13 +10,17 @@ import {MapService} from '../../services/map/map.service';
 })
 export class MapComponent implements OnInit {
 
+  @Input() mapContent: ITerritory;
+  layer: string;
+
   constructor(private map: MapService) { }
   ngOnInit() {
     this.map.buildMap();
+    this.map.drawArea(this.mapContent);
   }
 
-  onStyleChange(e: Event) {
-    console.log(e.value);
+  onStyleChange(e: any) {
+    this.layer = e.value;
     this.map.changeMapStyle(e.value);
   }
 

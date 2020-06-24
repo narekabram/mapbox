@@ -20,4 +20,5 @@ export interface IGeometry {
   features?: IGeometry[];
   coordinates?: number[][];
   properties?: IArea;
+  geometry?: IGeometry;
 }

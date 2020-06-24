@@ -20,18 +20,17 @@ export class ContentService {
   constructor() { }
 
   getContent() {
-    console.log(this.contentBehaviorSubject.value);
     this.contentBehaviorSubject.value.fields.map((field: IArea) => {
       if (field.acres <= AreasEnum.xSmall) {
-        field.color = areasColors[AreasEnum.xSmall];
+        field.geometry.features[0].properties.color = areasColors[AreasEnum.xSmall];
       } else if (field.acres <= AreasEnum.small) {
-        field.color = areasColors[AreasEnum.small];
+        field.geometry.features[0].properties.color = areasColors[AreasEnum.small];
       } else if (field.acres <= AreasEnum.medium) {
-        field.color = areasColors[AreasEnum.medium];
+        field.geometry.features[0].properties.color = areasColors[AreasEnum.medium];
       } else if (field.acres <= AreasEnum.large) {
-        field.color = areasColors[AreasEnum.large];
+        field.geometry.features[0].properties.color = areasColors[AreasEnum.large];
       } else {
-        field.color = areasColors[AreasEnum.xLarge];
+        field.geometry.features[0].properties.color = areasColors[AreasEnum.xLarge];
       }
     });
     return this.contentBehaviorSubject.asObservable();
