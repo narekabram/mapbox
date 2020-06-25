@@ -13,6 +13,7 @@ export class MapWrapperComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.contentService.InitContent();
     this.contentService.getContent().subscribe(content => {
       this.content = content;
     });

@@ -17,7 +17,9 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.formControlSubscription = this.areaFormControl.valueChanges.pipe(debounceTime(300))
-      .subscribe((area: number) => this.contentService.filterContent(area));
+      .subscribe((area: number) => {
+        this.contentService.filterContent(area);
+      });
   }
 
   ngOnDestroy(): void {

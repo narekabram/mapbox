@@ -1,12 +1,15 @@
+import {LngLatLike} from 'mapbox-gl';
+
 export interface ITerritory {
   count: number;
   max: number;
   offset: number;
-  fields: IArea[];
+  fields?: IArea[];
+  geometry?: IGeometry;
 }
 
 export interface IArea {
-  state: string;
+  state?: string;
   geometryId?: number;
   geom_id?: number;
   geometry?: IGeometry;
@@ -16,9 +19,9 @@ export interface IArea {
 
 export interface IGeometry {
   id?: string;
-  type: string;
+  type?: string;
   features?: IGeometry[];
-  coordinates?: number[][];
+  coordinates?: LngLatLike[][][];
   properties?: IArea;
   geometry?: IGeometry;
 }

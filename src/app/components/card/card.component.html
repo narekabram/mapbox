@@ -1,9 +1,9 @@
-<div class="card-container">
+<div class="card-container" (click)="flyTo()">
   <div class="card">
-    <div class="area-color" [ngStyle]="{'background-color': area.geometry.features[0].properties.color}"></div>
-    <div>
-      <p>state: {{area.state}}</p>
-      <p>acres: {{area.acres}}</p>
+    <div class="area-color" [ngStyle]="{'background-color': area.properties.color}"></div>
+    <div class="area-info">
+      <p>state: {{area.properties.state}}</p>
+      <p>acres: {{area.properties.acres}}</p>
     </div>
   </div>
 </div>

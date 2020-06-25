@@ -3,6 +3,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material';
 
 
 
@@ -12,13 +13,15 @@ import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule { }

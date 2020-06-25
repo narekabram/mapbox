@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {territoryInfo} from '../../mock-data';
-import {BehaviorSubject} from 'rxjs';
-import {IArea, ITerritory} from '../../models/area.model';
+import {BehaviorSubject, of} from 'rxjs';
+import {IArea, IGeometry, ITerritory} from '../../models/area.model';
 import {AreasEnum} from '../../enums/areas.enum';
 
 const areasColors = {
@@ -16,33 +16,65 @@ const areasColors = {
   providedIn: 'root'
 })
 export class ContentService {
-  private contentBehaviorSubject = new BehaviorSubject<ITerritory>(territoryInfo);
+  private mapContent: ITerritory;
+  private contentBehaviorSubject = new BehaviorSubject<ITerritory>(null);
   constructor() { }
 
-  getContent() {
-    this.contentBehaviorSubject.value.fields.map((field: IArea) => {
-      if (field.acres <= AreasEnum.xSmall) {
-        field.geometry.features[0].properties.color = areasColors[AreasEnum.xSmall];
-      } else if (field.acres <= AreasEnum.small) {
-        field.geometry.features[0].properties.color = areasColors[AreasEnum.small];
-      } else if (field.acres <= AreasEnum.medium) {
-        field.geometry.features[0].properties.color = areasColors[AreasEnum.medium];
-      } else if (field.acres <= AreasEnum.large) {
-        field.geometry.features[0].properties.color = areasColors[AreasEnum.large];
-      } else {
-        field.geometry.features[0].properties.color = areasColors[AreasEnum.xLarge];
+  InitContent() {
+    this.mapContent = {
+      count: territoryInfo.count,
+      max: territoryInfo.max,
+      offset: territoryInfo.offset,
+      geometry: {
+        type: territoryInfo.fields[0].geometry.type,
+        features: []
       }
-    });
-    return this.contentBehaviorSubject.asObservable();
+    };
+
+    for (const field of territoryInfo.fields) {
+      const feature = field.geometry.features[0];
+      this.mapContent.geometry.features.push({
+        ...feature,
+        properties: {
+          ...feature.properties,
+          color: this.filterColors(feature.properties.acres)
+        }
+      } as any);
+    }
+
+    this.contentBehaviorSubject.next(this.mapContent);
   }
 
   filterContent(areaSize: number): void {
     if (!areaSize) {
-      this.contentBehaviorSubject.next({...territoryInfo});
+      this.contentBehaviorSubject.next({...this.mapContent});
       return;
     }
-    const content: ITerritory = {...territoryInfo};
-    content.fields = content.fields.filter((field: IArea) => field.acres === areaSize);
-    this.contentBehaviorSubject.next(content);
+    let features: IGeometry[] = this.mapContent.geometry.features;
+    features = features.filter((feature: IGeometry) => feature.properties.acres === areaSize);
+    this.contentBehaviorSubject.next({
+      ...this.mapContent,
+      geometry: {
+        ...this.mapContent.geometry,
+        features,
+      }});
+  }
+
+  getContent() {
+    return this.contentBehaviorSubject.asObservable();
+  }
+
+  filterColors(acres) {
+    if (acres <= AreasEnum.xSmall) {
+      return areasColors[AreasEnum.xSmall];
+    } else if (acres <= AreasEnum.small) {
+      return areasColors[AreasEnum.small];
+    } else if (acres <= AreasEnum.medium) {
+      return areasColors[AreasEnum.medium];
+    } else if (acres <= AreasEnum.large) {
+      return areasColors[AreasEnum.large];
+    } else {
+      return areasColors[AreasEnum.xLarge];
+    }
   }
 }

@@ -1,8 +1,8 @@
 <div>
   <app-filter></app-filter>
   <div class="content">
-    <div *ngFor="let field of mapContent.fields">
-      <app-card [area]="field"></app-card>
+    <div *ngFor="let feature of mapContent.geometry.features">
+      <app-card [area]="feature"></app-card>
     </div>
   </div>
 </div>

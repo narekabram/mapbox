@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IArea} from '../../models/area.model';
+import {IArea, IGeometry} from '../../models/area.model';
+import {MapService} from '../../services/map/map.service';
 
 @Component({
   selector: 'app-card',
@@ -7,10 +8,14 @@ import {IArea} from '../../models/area.model';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() area: IArea;
-  constructor() { }
+  @Input() area: IGeometry;
+  constructor(private map: MapService) { }
 
   ngOnInit() {
+  }
+
+  flyTo() {
+    this.map.flyTo(this.area);
   }
 
 }
