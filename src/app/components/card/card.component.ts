@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IArea, IGeometry} from '../../models/area.model';
+import {IGeometry} from '../../models/area.model';
 import {MapService} from '../../services/map/map.service';
 
 @Component({

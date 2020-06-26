@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatRadioGroup, MatRadioModule} from '@angular/material/radio';
+import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material';
 
 

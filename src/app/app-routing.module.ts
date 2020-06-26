@@ -10,6 +10,7 @@ const routes: Routes = [
     component: LandingComponent
   },
   {
+    // in big project we need to create separate module for map with lazy load
     path: 'map',
     component: MapWrapperComponent
   }

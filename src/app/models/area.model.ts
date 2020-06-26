@@ -1,4 +1,5 @@
 import {LngLatLike} from 'mapbox-gl';
+import {Feature, MultiPolygon} from 'geojson';
 
 export interface ITerritory {
   count: number;
@@ -12,16 +13,12 @@ export interface IArea {
   state?: string;
   geometryId?: number;
   geom_id?: number;
-  geometry?: IGeometry;
+  geometry?: IGeometry | MultiPolygon;
   acres: number;
   color?: string;
 }
 
-export interface IGeometry {
-  id?: string;
-  type?: string;
+export interface IGeometry extends Feature {
   features?: IGeometry[];
-  coordinates?: LngLatLike[][][];
-  properties?: IArea;
-  geometry?: IGeometry;
+  coordinates: LngLatLike;
 }

@@ -1,11 +1,11 @@
-<div id="map" class="map-container"></div>
+<div id="map" class="map-container" #mapTemplate></div>
 <div class="map-menu">
   <mat-radio-group aria-label="Select an option" (change)="onStyleChange($event)">
-    <mat-radio-button value="street" [checked]="true">Street</mat-radio-button>
-    <mat-radio-button value="satellite">Satellite</mat-radio-button>
+    <mat-radio-button class="map-menu-radio-button" value="street" [checked]="true">Street</mat-radio-button>
+    <mat-radio-button class="map-menu-radio-button"value="satellite">Satellite</mat-radio-button>
   </mat-radio-group>
 
-  <mat-button-toggle [checked]="isSourceShown" [value]="!isSourceShown" (change)="chaneLayersViewStatus($event)">
+  <mat-button-toggle class="map-menu-toggle" [checked]="isSourceShown" [value]="!isSourceShown" (change)="chaneLayersViewStatus($event)">
     {{isSourceShown ? 'hide layers' : 'show Layers'}}
   </mat-button-toggle>
 </div>

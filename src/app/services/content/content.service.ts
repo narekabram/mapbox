@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {territoryInfo} from '../../mock-data';
-import {BehaviorSubject, of} from 'rxjs';
-import {IArea, IGeometry, ITerritory} from '../../models/area.model';
-import {AreasEnum} from '../../enums/areas.enum';
+import {BehaviorSubject} from 'rxjs';
+import {IGeometry, ITerritory} from '../../models/area.model';
+import {MapEnum} from '../../enums/map.enum';
 
 const areasColors = {
   20: '#E8474B',
@@ -28,7 +28,7 @@ export class ContentService {
       geometry: {
         type: territoryInfo.fields[0].geometry.type,
         features: []
-      }
+      } as any
     };
 
     for (const field of territoryInfo.fields) {
@@ -65,16 +65,16 @@ export class ContentService {
   }
 
   filterColors(acres) {
-    if (acres <= AreasEnum.xSmall) {
-      return areasColors[AreasEnum.xSmall];
-    } else if (acres <= AreasEnum.small) {
-      return areasColors[AreasEnum.small];
-    } else if (acres <= AreasEnum.medium) {
-      return areasColors[AreasEnum.medium];
-    } else if (acres <= AreasEnum.large) {
-      return areasColors[AreasEnum.large];
+    if (acres <= MapEnum.xSmall) {
+      return areasColors[MapEnum.xSmall];
+    } else if (acres <= MapEnum.small) {
+      return areasColors[MapEnum.small];
+    } else if (acres <= MapEnum.medium) {
+      return areasColors[MapEnum.medium];
+    } else if (acres <= MapEnum.large) {
+      return areasColors[MapEnum.large];
     } else {
-      return areasColors[AreasEnum.xLarge];
+      return areasColors[MapEnum.xLarge];
     }
   }
 }

@@ -1,16 +1,23 @@
 .map-container {
-  width: 100%;
-  //max-height: calc(100vh - 170px);
+  width: 1180px;
   position: absolute;
-  height: 100%;
-}
-
-#map {
-  //max-width: calc(1280px - 235px);
+  top: 60px;
+  bottom: 30px;
 }
 
 .map-menu {
   position: absolute;
   background: #fff;
   padding: 10px;
+  min-width: 290px;
+
+  &-radio-button {
+    margin: 10px;
+  }
+
+  &-toggle {
+    padding: 0 10px;
+    min-width: 110px;
+    background-color: antiquewhite;
+  }
 }

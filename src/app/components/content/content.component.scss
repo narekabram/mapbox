@@ -1,4 +1,6 @@
-.content {
-  max-height: calc(100vh - 170px);
-  overflow: auto;
+.left-bar {
+  .content {
+    max-height: calc(100vh - 180px);
+    overflow: auto;
+  }
 }

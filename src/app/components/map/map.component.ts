@@ -1,19 +1,20 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {MapService} from '../../services/map/map.service';
-import {IArea, ITerritory} from '../../models/area.model';
-import {ContentService} from '../../services/content/content.service';
+import {ITerritory} from '../../models/area.model';
+import {MapStyleEnum} from '../../enums/map.enum';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, OnChanges {
+export class MapComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() mapContent: ITerritory;
   isSourceShown = true;
+  mapStyle = MapStyleEnum.street;
 
-  constructor(private map: MapService, private contentService: ContentService) {
+  constructor(private map: MapService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -24,12 +25,16 @@ export class MapComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.map.buildMap();
-    this.map.drawArea(this.mapContent);
+    this.initMap(this.mapContent, this.mapStyle);
+  }
+
+  initMap(mapContent: ITerritory, mapStyle: string) {
+    this.map.buildMap(mapContent, mapStyle);
+    this.map.drawMap(mapContent);
   }
 
   onStyleChange(e: any) {
-    this.map.changeMapStyle(e.value);
+    this.map.changeMapStyle(e.value, this.mapContent);
   }
 
   chaneLayersViewStatus(event) {
@@ -45,7 +50,10 @@ export class MapComponent implements OnInit, OnChanges {
         }
       });
     }
+  }
 
+  ngOnDestroy(): void {
+    this.map.removeEventListeners();
   }
 
 }
